@@ -1,0 +1,455 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Новогодний корпоратив · Демлинк Атлас</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+/* ============ ATLAS DESIGN TOKENS ============ */
+:root{
+  --atlas:#253FC7;         /* atlas violet — primary */
+  --atlas-hover:#264AA8;
+  --atlas-deep:#1D2027;    /* deep charcoal */
+  --atlas-dark:#131217;    /* ink */
+  --accent:#FF4453;        /* atlas red — vibrant CTA */
+  --indigo:#17378A;
+  --peri:#4861B5;
+  --ink:#131217;
+  --ink-2:#463f4a;
+  --muted:#6b6a75;
+  --line:rgba(19,18,23,.10);
+  --white:#fff;
+  --paper:#FDFDFf;
+  --paper-2:#F5F5FA;
+  --sans:'Inter','Avenir Next','Helvetica Neue',system-ui,sans-serif;
+  --shadow:0 16px 44px -18px rgba(37,63,199,.30);
+  --shadow-lg:0 36px 80px -26px rgba(37,63,199,.40);
+  --radius:22px;
+  --ease:cubic-bezier(.19,1,.22,1);
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  font-family:var(--sans);color:#333;background:var(--paper);
+  -webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility;
+  overflow-x:hidden;
+}
+::selection{background:rgba(37,49,199,.16)}
+h1,h2,h3{font-family:var(--sans)}
+img{display:block;max-width:100%}
+a{color:inherit;text-decoration:none}
+:focus-visible{outline:3px solid var(--atlas-hover);outline-offset:2px;border-radius:4px}
+
+/* ============ DECK SHELL ============ */
+.slide{
+  width:1280px;height:720px;
+  position:relative;overflow:hidden;
+  margin:0 auto;background:var(--paper);
+  /* container per slide */
+}
+.slide-inner{position:relative;z-index:2;width:100%;height:100%;padding:56px 64px;display:flex;flex-direction:column}
+.container{width:100%;max-width:1160px;margin:0 auto}
+.slide-kicker{
+  font-size:12.5px;letter-spacing:.22em;text-transform:uppercase;
+  color:var(--atlas);font-weight:700;display:inline-flex;align-items:center;gap:10px;
+}
+.slide-kicker .bar{width:26px;height:3px;background:var(--accent);border-radius:2px}
+.slide-title{font-size:clamp(30px,54px,56px);font-weight:800;color:var(--atlas-dark);letter-spacing:-.025em;line-height:1.05;margin-top:16px;text-wrap:balance}
+.slide-sub{color:var(--muted,#6b7280);font-size:20px;line-height:1.55;margin-top:18px;max-width:820px}
+.atlas-red{color:var(--atlas)} /* violet primary for headings */
+
+/* footer bar */
+.brand{position:absolute;right:40px;bottom:32px;z-index:4}
+.brand img{height:26px;width:auto;opacity:.85}
+.sn{position:absolute;right:40px;bottom:60px;font-size:13px;color:var(--muted);font-weight:600;z-index:4;letter-spacing:.04em}
+.sn .on{color:var(--accent)}
+
+/* ============ SLIDE 1 · HERO ============ */
+.hero-bg{position:absolute;inset:0;background-image:url('assets/hero_in-out-newyear-moscow1.jpg');background-size:cover;background-position:center}
+.hero-bg::after{content:'';position:absolute;inset:0;background:linear-gradient(100deg,rgba(10,11,16,.86) 0%,rgba(13,14,20,.62) 46%,rgba(30,33,44,.28) 100%)}
+.hero-bg::before{content:'';position:absolute;inset:0;background:radial-gradient(1100px at 12% 10%,rgba(37,49,199,.38),transparent 60%)}
+.hero-top{position:absolute;top:40px;left:40px;right:40px;z-index:5;display:flex;justify-content:space-between;align-items:flex-start}
+.hero-logo img{height:38px;width:auto}
+.hero-badge{display:inline-flex;align-items:center;gap:8px;color:rgba(255,255,255,.92);font-size:12.5px;letter-spacing:.14em;text-transform:uppercase;font-weight:600;padding:10px 18px;border-radius:999px;background:rgba(255,255,255,.10);border:1px solid rgba(255,255,255,.22);backdrop-filter:blur(6px)}
+.hero-logo-sub{font-size:11px;font-weight:500;letter-spacing:.05em;color:rgba(255,255,255,.68);margin-top:7px}
+.hero-inner{position:absolute;left:0;right:0;top:0;bottom:0;display:flex;align-items:center;z-index:3}
+.hero-eyebrow{display:inline-flex;align-items:center;gap:9px;color:rgba(255,255,255,.9);font-size:13px;letter-spacing:.16em;text-transform:uppercase;font-weight:600;padding:10px 18px;border-radius:11px;background:var(--accent);box-shadow:0 12px 30px -10px rgba(255,68,83,.7)}
+.hero-eyebrow .dot{width:7px;height:7px;border-radius:50%;background:#fff;animation:pulse 1.8s infinite}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.35}}
+.hero-title{font-size:64px;font-weight:800;color:#fff;letter-spacing:-.035em;line-height:1.02;margin-top:26px;text-wrap:balance}
+.hero-title .thin{color:var(--white);opacity:.9}
+.hero-title .accent{color:#fff;position:relative}
+.hero-title .accent mark{position:absolute;left:-4px;right:-4px;bottom:4px;height:.16em;background:var(--accent);border-radius:2px;z-index:-1}
+.hero-sub{color:rgba(255,255,255,.9);font-size:21px;font-weight:400;margin-top:22px;max-width:620px;line-height:1.55}
+.hero-meta{display:flex;gap:12px;flex-wrap:wrap;margin-top:30px}
+.meta-chip{display:inline-flex;align-items:center;gap:8px;color:rgba(255,255,255,.92);background:rgba(255,255,255,.10);border:1px solid rgba(255,255,255,.22);padding:11px 18px;border-radius:11px;font-size:14px;font-weight:500;backdrop-filter:blur(6px)}
+.meta-chip .ic{width:16px;height:16px;color:var(--accent);flex:none}
+
+/* ============ SLIDE · FORMAT / STATS ============ */
+.section-head .slide-kicker{color:var(--atlas)}
+.section-head .slide-title{color:var(--atlas-dark)}
+.stat-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:18px;margin-top:52px}
+.stat-card{background:#fff;border:1px solid rgba(37,49,199,.10);border-radius:var(--radius);padding:34px 20px;text-align:center;box-shadow:var(--shadow)}
+.stat-num{font-size:52px;font-weight:800;color:var(--atlas);letter-spacing:-.03em;line-height:1;background:linear-gradient(135deg,#253FC7,#4861B5);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
+.stat-lbl{font-size:15px;color:var(--muted);margin-top:14px;line-height:1.45}
+
+/* ============ VENUE SLIDE (left intro) ============ */
+.venue-grid{display:grid;grid-template-columns:1.05fr .95fr;gap:40px;align-items:center;margin-top:24px;flex:1}
+.venue-head .slide-kicker{color:var(--atlas)}
+.venue-head .slide-title{font-size:44px}
+.venue-desc{color:#4b5563;font-size:16.5px;line-height:1.6;margin-top:16px}
+.venue-tag{display:inline-flex;align-items:center;gap:8px;color:var(--atlas);font-weight:700;font-size:14px;margin-top:10px}
+.venue-feats{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:26px}
+.feat{background:#fff;border:1px solid rgba(37,49,199,.12);border-radius:14px;padding:15px 16px}
+.feat .k{color:var(--atlas);font-weight:700;font-size:22px;letter-spacing:-.01em}
+.feat .v{color:var(--muted);font-size:12.5px;margin-top:3px;line-height:1.4}
+.venue-photo{position:relative;border-radius:24px;overflow:hidden;height:100%;min-height:440px;box-shadow:var(--shadow-lg)}
+.venue-photo img{width:100%;height:100%;object-fit:cover}
+
+/* ============ HALLS (big photos) ============ */
+.halls-head{max-width:760px}
+.halls{display:flex;gap:18px;flex:1;margin-top:26px}
+.hall-card{flex:1;display:flex;flex-direction:column;background:#fff;border:1px solid rgba(11,49,199,.08);border-radius:var(--radius);overflow:hidden;box-shadow:var(--shadow)}
+.hall-photo{position:relative;flex:1;min-height:0;overflow:hidden}
+.hall-photo img{width:100%;height:100%;object-fit:cover}
+.hall-photo .tag{position:absolute;top:16px;left:16px;color:#fff;font-size:11px;letter-spacing:.12em;text-transform:uppercase;background:var(--accent);padding:7px 13px;border-radius:9px;font-weight:700}
+.hall-body{padding:22px 24px 26px;background:var(--atlas-dark);color:#fff}
+.hall-name{font-size:24px;font-weight:700;color:#fff;letter-spacing:-.01em}
+.hall-spec{font-size:14.5px;color:rgba(255,255,255,.82);line-height:1.55;margin-top:10px}
+.hall-stats{display:flex;gap:20px;margin-top:16px;padding-top:16px;border-top:1px solid rgba(255,255,255,.14)}
+.hall-stats div .k{font-size:20px;font-weight:800;color:#fff}
+.hall-stats div .l{font-size:11.5px;color:rgba(255,255,255,.6);text-transform:uppercase;letter-spacing:.06em;margin-top:3px}
+
+/* ST REGIS many halls — grid strip */
+.st-halls{display:flex;gap:14px;flex:1;margin-top:26px}
+.st-hall{flex:1;display:flex;flex-direction:column;background:#fff;border:1px solid rgba(11,49,199,.08);border-radius:18px;overflow:hidden;box-shadow:var(--shadow);min-width:0}
+.st-hall .ph{height:150px;overflow:hidden;position:relative}
+.st-hall .ph img{width:100%;height:100%;object-fit:cover}
+.st-hall .ph .nm{position:absolute;left:0;right:0;bottom:0;padding:22px 14px 10px;background:linear-gradient(transparent,rgba(10,11,16,.72));color:#fff;font-weight:700;font-size:15px}
+.st-hall .bd{padding:14px 15px 16px;display:flex;flex-wrap:wrap;gap:8px}
+.pill{font-size:12px;color:var(--atlas);background:rgba(37,49,199,.08);border:1px solid rgba(37,49,199,.16);padding:6px 11px;border-radius:999px;font-weight:600}
+
+/* ============ METRO / LOCATION ============ */
+.metro{display:grid;grid-template-columns:1fr 1fr;gap:40px;align-items:center;flex:1;margin-top:20px}
+.metro-card{background:#fff;border:1px solid rgba(37,49,199,.12);border-radius:var(--radius);padding:30px 30px;box-shadow:var(--shadow)}
+.metro-card .ic-row{display:flex;align-items:center;gap:10px}
+.metro-card .ic-row .circ{width:38px;height:38px;border-radius:50%;background:var(--accent);display:flex;align-items:center;justify-content:center;flex:none}
+.metro-card .ic-row .circ svg{width:18px;height:18px;color:#fff}
+.metro-card h3{font-size:26px;font-weight:800;color:var(--atlas-dark);margin-top:18px;letter-spacing:-.01em}
+.metro-card p{color:var(--muted);font-size:15.5px;line-height:1.6;margin-top:12px}
+.metro-walk{display:inline-flex;align-items:center;gap:8px;margin-top:18px;color:var(--accent);font-weight:700;font-size:15px}
+.metro-walk svg{width:17px;height:17px}
+.metro-photo{border-radius:24px;overflow:hidden;height:100%;min-height:420px;box-shadow:var(--shadow-lg)}
+.metro-photo img{width:100%;height:100%;object-fit:cover}
+
+/* ============ ACTIVITIES / HOSTS (placeholders) ============ */
+.ph-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;flex:1;margin-top:46px}
+.ph-card{background:#fff;border:1px solid var(--line);border-radius:var(--radius);padding:30px 26px;display:flex;flex-direction:column;gap:14px;box-shadow:var(--shadow)}
+.ph-card .ic{width:44px;height:44px;border-radius:12px;background:rgba(37,49,199,.10);display:flex;align-items:center;justify-content:center}
+.ph-card .ic svg{width:22px;height:22px;color:var(--atlas)}
+.ph-card h4{font-size:20px;font-weight:700;color:var(--atlas-dark)}
+.ph-card p{color:var(--muted);font-size:14.5px;line-height:1.55}
+.ph-place{font-size:13px;color:var(--accent);font-weight:600;margin-top:auto;padding-top:6px}
+
+/* host cards */
+.host-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:18px;flex:1;margin-top:42px}
+.host-card{background:#fff;border:1px solid var(--line);border-radius:var(--radius);overflow:hidden;box-shadow:var(--shadow)}
+.host-card .ph{aspect-ratio:3/3.4;overflow:hidden;background:linear-gradient(160deg,#253FC7,#17378A);display:flex;align-items:center;justify-content:center;color:rgba(255,255,255,.5);font-size:56px;font-weight:800}
+.host-card .b{padding:18px 20px}
+.host-card .b h4{font-size:19px;font-weight:700;color:var(--atlas-dark)}
+.host-card .b span{font-size:13.5px;color:var(--muted)}
+
+/* ============ CONTACT / CLOSE ============ */
+.contact{position:absolute;inset:0;z-index:1;background:linear-gradient(140deg,#131217 0%,#1D2027 52%,#1a1f3a 100%)}
+.contact::after{content:'';position:absolute;inset:0;background:radial-gradient(700px at 85% 12%,rgba(37,49,199,.5),transparent 62%);background:radial-gradient(650px at 88% 12%,rgba(37,49,199,.5),transparent 60%)}
+.contact-inner{position:relative;z-index:3}
+.contact .slide-kicker{color:var(--accent)}
+.contact .slide-title{color:#fff}
+.contact-sub{color:rgba(255,255,255,.72);max-width:620px;margin-top:20px;font-size:18px;line-height:1.6}
+.contact-grid{display:flex;gap:18px;margin-top:52px;max-width:900px}
+.c-card{flex:1;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.16);border-radius:var(--radius);padding:30px 24px;display:flex;flex-direction:column;gap:8px;backdrop-filter:blur(8px)}
+.c-card .lbl{color:rgba(255,255,255,.55);font-size:11.5px;letter-spacing:.12em;text-transform:uppercase}
+.c-card .val{color:#fff;font-weight:600;font-size:18px;line-height:1.4}
+
+/* ============ SECTION DIVIDER / MINI HEAD ============ */
+.divider{position:absolute;inset:0;background:linear-gradient(135deg,#f5f5fa,#eef0fb)}
+.mini{justify-content:center;text-align:left}
+
+/* spacing helpers */
+.muted{color:var(--muted)}
+.lead{color:var(--muted);font-size:18px;line-height:1.6}
+.mt-8{margin-top:8px}.mt-14{margin-top:14px}.mt-20{margin-top:20px}.mt-30{margin-top:30px}
+</style>
+</head>
+<body>
+<body class="deck">
+<!-- ============ SLIDE 1 · TITLE ============ -->
+<section class="slide" data-slide="1">
+  <div class="hero-bg"></div>
+  <div class="hero-top">
+    <div class="hero-logo">
+      <img src="assets/atlas-logo.png" alt="Демлинк Атлас">
+      <span class="hero-logo-sub">Business Travel · MICE · Event Concierge</span>
+    </div>
+    <span class="hero-badge"><span class="dot"></span>Новогодний корпоратив · 2026</span>
+  </div>
+  <div class="hero-inner slide-inner">
+    <div style="max-width:820px">
+      <span class="hero-eyebrow"><span class="dot"></span>Мероприятие под ключ</span>
+      <h1 class="hero-title">Новогодний<br><span class="thin">корпоратив</span> <span class="accent">в Москве</span></h1>
+      <p class="hero-sub">Проведём праздник для вашей команды в лучших пространствах столицы — с площадкой, ведущим и развлекательной программой под ключ.</p>
+      <div class="hero-meta">
+        <span class="meta-chip"><span class="ic">🗓</span> Декабрь · 2026</span>
+        <span class="meta-chip"><span class="ic">📍</span> Москва · центр</span>
+        <span class="meta-chip"><span class="ic">🚇</span> Шаговая доступность от метро</span>
+      </div>
+    </div>
+  </div>
+  <div class="brand"><span class="sn">Демлинк <span class="on">Атлас</span></span><img src="assets/atlas-logo.png" alt=""></div>
+</section>
+
+<!-- ============ SLIDE 2 · FORMAT ============ -->
+<section class="slide" data-slide="2">
+  <div class="slide-inner">
+    <div class="section-head">
+      <div class="slide-kicker"><span class="bar"></span>Формат мероприятия</div>
+      <h2 class="slide-title">Праздник для команды —<br>площадка, что задаст настроение</h2>
+      <p class="slide-sub">Два проверенных пространства в центре Москвы: удобная логистика, крупные залы и полное сопровождение Демлинк Атлас.</p>
+    </div>
+    <div class="stat-grid">
+      <div class="stat-card"><span class="stat-num">2</span><span class="stat-lbl">площадки на выбор</span></div>
+      <div class="stat-card"><span class="stat-num">8+</span><span class="stat-lbl">банкетных залов</span></div>
+      <div class="stat-card"><span class="stat-num">170</span><span class="stat-lbl">гостей макс. банкет</span></div>
+      <div class="stat-card"><span class="stat-num">5</span><span class="stat-lbl">минут до метро</span></div>
+    </div>
+  </div>
+  <span class="sn">Демлинк <span class="on">Атлас</span></span>
+  <div class="brand"><img src="assets/atlas-logo.png" alt=""></div>
+</section>
+
+<!-- ============ SLIDE 3 · VENUE 1 OKOVOICE (intro) ============ -->
+<section class="slide" data-slide="3">
+  <div class="slide-inner">
+    <div class="venue-grid">
+      <div class="venue-head">
+        <div class="slide-kicker"><span class="bar"></span>Площадка №1</div>
+        <h2 class="slide-title">OKOVOICE Event Hall</h2>
+        <div class="venue-tag">📍 Москва-Сити · башня «ОКО», 6 этаж</div>
+        <p class="venue-desc muted">Панорамный event-hall в самом сердце «Москва-Сити», в башне «ОКО». Первый понтонный зал с панорамными окнами и зал со сценой — для корпоративного праздника с программой.</p>
+        <div class="venue-feats">
+          <div class="feat"><div class="k">90 / 120</div><div class="v">банкет / фуршет<br>зал Панорамный</div></div>
+          <div class="feat"><div class="k">50–60 / 80</div><div class="v">банкет · фуршет зал со сценой</div></div>
+          <div class="feat"><div class="k">СМЦ</div><div class="v">Москва-Сити · Деловой центр</div></div>
+          <div class="feat"><div class="k">4 с/у</div><div class="v">санузлы, барная стойка</div></div>
+        </div>
+      </div>
+      <div class="venue-photo"><img src="assets/okovoice/p10_img1.jpg" alt="Okovoice Event Hall"></div>
+    </div>
+  </div>
+  <span class="sn">Демлинк <span class="on">Атлас</span></span>
+  <div class="brand"><img src="assets/atlas-logo.png" alt=""></div>
+</section>
+
+<!-- ============ SLIDE 4 · OKOVOICE HALLS (big photos) ============ -->
+<section class="slide" data-slide="4">
+  <div class="slide-inner">
+    <div class="halls-head">
+      <div class="slide-kicker"><span class="bar"></span>OKOVOICE · залы</div>
+      <h2 class="slide-title" style="font-size:44px">Два зала для вашего праздника</h2>
+    </div>
+    <div class="halls">
+      <div class="hall-card">
+        <div class="hall-photo"><span class="tag">Зал №1 · Панорамный</span><img src="assets/okovoice/p7_img1.jpg" alt="Панорамный зал"></div>
+        <div class="hall-body">
+          <div class="hall-name">Панорамный зал</div>
+          <div class="hall-spec">220 м² · панорамные окна · большой проекционный экран 15×4,5 м</div>
+          <div class="hall-stats">
+            <div><div class="k">90</div><div class="l">банкет</div></div>
+            <div><div class="k">120</div><div class="l">фуршет</div></div>
+            <div><div class="k">4</div><div class="l">санузла</div></div>
+            <div><div class="k">HD</div><div class="l">звук·свет·видео</div></div>
+          </div>
+        </div>
+      </div>
+      <div class="hall-card">
+        <div class="hall-photo"><span class="tag">Зал со сценой</span><img src="assets/okovoice/p6_img1.jpg" alt="Зал со сценой"></div>
+        <div class="hall-body">
+          <div class="hall-name">Зал со сценой</div>
+          <div class="hall-spec">190 м² · сцена · LED-экран за ней · 6 плазм · караоке</div>
+          <div class="hall-stats">
+            <div><div class="k">50–60</div><div class="l">банкет</div></div>
+            <div><div class="k">80</div><div class="l">фуршет</div></div>
+            <div><div class="k">✓</div><div class="l">караоке</div></div>
+            <div><div class="k">Pro</div><div class="l">звук·свет</div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <span class="sn">Демлинк <span class="on">Атлас</span></span>
+  <div class="brand"><img src="assets/atlas-logo.png" alt=""></div>
+</section>
+
+<!-- ============ SLIDE 5 · OKOVOICE METRO / details ============ -->
+<section class="slide" data-slide="5">
+  <div class="slide-inner">
+    <div class="section-head">
+      <div class="slide-kicker"><span class="bar"></span>OKOVOICE · как добраться</div>
+      <h2 class="slide-title" style="font-size:44px">В нескольких шагах от метро «Москва-Сити»</h2>
+      <p class="muted mt-14" style="font-size:16.5px;max-width:560px;line-height:1.6">1-й Красногвардейский проезд, 21, стр. 2 · башня «ОКО», 6 этаж. Шаговая доступность от станций МЦК и метро.</p>
+    </div>
+    <div class="metro" style="margin-top:30px">
+      <div>
+        <div class="metro-card">
+          <div class="m-row"><span class="ic">🚇</span><h3>Москва-Сити</h3></div>
+          <p>Станции «Деловой центр» (канатная), «Выставочная», метро «Международная» и МЦК «Деловой центр» — 5–7 минут пешком до башни «ОКО».</p>
+          <div class="metro-walk">🚶 5–7 минут пешком</div>
+        </div>
+      </div>
+      <div class="metro-photo"><img src="assets/okovoice/p14_img1.jpg" alt="ОКО башня"></div>
+    </div>
+  </div>
+  <span class="sn">Демлинк <span class="on">Атлас</span></span>
+  <div class="brand"><img src="assets/atlas-logo.png" alt=""></div>
+</section>
+
+<!-- ============ SLIDE 6 · VENUE 2 ST REGIS (intro) ============ -->
+<section class="slide" data-slide="6">
+  <div class="slide-inner">
+    <div class="venue-grid">
+      <div class="venue-head">
+        <div class="slide-kicker"><span class="bar"></span>Площадка №2</div>
+        <h2 class="slide-title">The St. Regis<br>Москва Никольская</h2>
+        <div class="venue-tag">📍 Никольская ул., 12 · исторический центр</div>
+        <p class="venue-desc">Отель-памятник архитектуры XIX века в 5 минутах от Красной площади и Кремля. 5 банкетно-конференц-залов и панорамный Rooftop с видом на Кремлёвскую набережную.</p>
+        <div class="venue-feats">
+          <div class="feat"><div class="t">6</div><div class="v">залов, включая Rooftop</div></div>
+          <div class="feat"><div class="t">30–170</div><div class="v">гостей банкет</div></div>
+          <div class="feat"><div class="t">5 мин</div><div class="v">пешком от метро</div></div>
+          <div class="feat"><div class="t">209</div><div class="v">номеров в отеле</div></div>
+        </div>
+      </div>
+      <div class="venue-photo"><img src="assets/stregis/hall_exterior.jpg" alt="The St. Regis"></div>
+    </div>
+  </div>
+  <span class="sn">Демлинк <span class="on">Атлас</span></span>
+  <div class="brand"><img src="assets/atlas-logo.png" alt=""></div>
+</section>
+
+<!-- ============ SLIDE 7 · ST REGIS HALLS ============ -->
+<section class="slide" data-slide="7">
+  <div class="slide-inner">
+    <div class="halls-head">
+      <div class="slide-kicker"><span class="bar"></span>The St. Regis · залы</div>
+      <h2 class="slide-title" style="font-size:42px">Банкетные и конференц-залы</h2>
+    </div>
+    <div class="st-halls" style="margin-top:26px">
+      <div class="st-hall"><div class="ph"><img src="assets/stregis/hall_Кандинский.jpg" alt="Кандинский"><span class="nm">Кандинский</span></div><div class="bd"><span class="pill">200 м²</span><span class="pill">до 170 чел.</span></div></div>
+      <div class="st-hall"><div class="ph"><img src="assets/stregis/hall_rooftop.jpg" alt="Rooftop"><span class="nm">Rooftop</span></div><div class="bd"><span class="pill">209 м² · вид на Кремль</span><span class="pill">до 150</span></div></div>
+      <div class="st-hall"><div class="ph"><img src="assets/stregis/hall_Васнецов.jpg" alt="Васнецов"><span class="nm">Васнецов</span></div><div class="bd"><span class="pill">90 м²</span><span class="pill">до 60</span></div></div>
+      <div class="st-hall"><div class="ph"><img src="assets/stregis/hall_Малевич.jpg" alt="Малевич"><span class="nm">Малевич</span></div><div class="bd"><span class="pill">70 м²</span><span class="pill">до 15</span></div></div>
+      <div class="st-hall"><div class="ph"><img src="assets/stregis/hall_Шагал.jpg" alt="Шагал"><span class="nm">Шагал</span></div><div class="bd"><span class="pill">62 м²</span><span class="pill">до 50</span></div></div>
+    </div>
+  </div>
+  <span class="sn">Демлинк <span class="on">Атлас</span></span>
+  <div class="brand"><img src="assets/atlas-logo.png" alt=""></div>
+</section>
+
+<!-- ============ SLIDE 8 · ST REGIS METRO / Rooftop ============ -->
+<section class="slide" data-slide="8">
+  <div class="slide-inner">
+    <div class="section-head">
+      <div class="slide-kicker"><span class="bar"></span>The St. Regis · как добраться</div>
+      <h2 class="slide-title" style="font-size:44px">5 минут пешком от трёх станций метро</h2>
+      <p class="muted mt-14" style="font-size:16.5px;max-width:560px;line-height:1.6">Отель в историческом центре — до Красной площади, Кремля и Большого театра пешком за 5 минут.</p>
+    </div>
+    <div class="metro" style="margin-top:30px">
+      <div>
+        <div class="metro-card">
+          <div class="m-row"><span class="ic">🚇</span><h3>Лубянка · Кузнецкий Мост · Площадь Революции</h3></div>
+          <p>Три станции метро в пешей доступности — идеальная логистика для гостей из любой точки города.</p>
+          <div class="metro-walk">🚶 5 минут пешком</div>
+        </div>
+        <div style="margin-top:18px" class="feat" ><div class="t">BONUS</div><div class="v">Панорамный Rooftop с видом на Кремль · 8 этаж · до 150 гостей</div></div>
+      </div>
+      <div class="metro-photo"><img src="assets/stregis/hall_rooftop.jpg" alt="Rooftop с видом на Кремль"></div>
+    </div>
+  </div>
+  <span class="sn">Демлинк <span class="on">Атлас</span></span>
+  <div class="brand"><img src="assets/atlas-logo.png" alt=""></div>
+</section>
+
+<!-- ============ SLIDE 9 · ACTIVITIES (placeholder) ============ -->
+<section class="slide" data-slide="9">
+  <div class="slide-inner">
+    <div class="section-head">
+      <div class="slide-kicker"><span class="bar"></span>Развлечения</div>
+      <h2 class="slide-title" style="font-size:44px">Активности для команды</h2>
+    </div>
+    <div class="ph-grid">
+      <div class="ph-card"><div class="ic">🎤</div><h4>Развлекательная программа</h4><p>Ведущий, музыка, интерактив — настроение праздника задаёт программа.</p><span class="ph-place">подбираем ведущего</span></div>
+      <div class="ph-card"><div class="ic">🎧</div><h4>Музыка и dj</h4><p>Звуковое сопровождение и DJ-сет под ваш формат.</p><span class="ph-place">уточняется</span></div>
+      <div class="ph-card"><div class="ic">🍽</div><h4>Кухня и бар</h4><p>Фуршет, банкет или авторские коктейли — по вашим пожеланиям.</p><span class="ph-place">уточняется</span></div>
+    </div>
+  </div>
+  <span class="sn">Демлинк <span class="on">Атлас</span></span>
+  <div class="brand"><img src="assets/atlas-logo.png" alt=""></div>
+</section>
+
+<!-- ============ SLIDE 10 · HOSTS (placeholder) ============ -->
+<section class="slide" data-slide="10">
+  <div class="slide-inner">
+    <div class="section-head">
+      <div class="slide-kicker"><span class="bar"></span>Ведущие</div>
+      <h2 class="slide-title" style="font-size:44px">Кто поведёт ваш праздник</h2>
+    </div>
+    <div class="host-grid" style="margin-top:34px">
+      <div class="host-card"><div class="ph">01</div><div class="b"><h4>Ведущий 1</h4><span>на проверке</span></div></div>
+      <div class="host-card"><div class="ph">02</div><div class="b"><h4>Ведущий 2</h4><span>на проверке</span></div></div>
+      <div class="host-card"><div class="ph">03</div><div class="b"><h4>Ведущий 3</h4><span>на проверке</span></div></div>
+      <div class="host-card"><div class="ph">04</div><div class="b"><h4>Ведущий 4</h4><span>на проверке</span></div></div>
+    </div>
+  </div>
+  <span class="sn">Демлинк <span class="on">Атлас</span></span>
+  <div class="brand"><img src="assets/atlas-logo.png" alt=""></div>
+</section>
+
+<!-- ============ SLIDE 11 · CONTACT ============ -->
+<section class="slide" data-slide="11">
+  <div class="contact"></div>
+  <div class="slide-inner contact-inner">
+    <div class="section-head">
+      <div class="slide-kicker"><span class="bar"></span>Свяжитесь с нами</div>
+      <h2 class="slide-title">Демлинк <span class="accent">Атлас</span></h2>
+      <p class="contact-sub">Организуем корпоративный праздник под ключ — от площадки до программы. Составим предложение под ваш формат.</p>
+    </div>
+    <div class="contact-grid">
+      <div class="c-card"><div class="lbl">Менеджер</div><div class="val">Диана Николаева</div></div>
+      <div class="c-card"><div class="lbl">Телефон</div><div class="val">+7 495 129 21 00</div></div>
+      <div class="c-card"><div class="lbl">Почта</div><div class="val">sales@demlink.ru</div></div>
+    </div>
+  </div>
+  <div class="brand" style="z-index:5"><img src="assets/atlas-logo.png" alt="" style="filter:brightness(0) invert(1);opacity:.9"></div>
+</section>
+
+<script>
+// reveal on scroll not needed for static deck
+// render helper: show only slide ?s=N (for per-slide screenshots / Figma capture / PDF)
+try {
+  var p = new URLSearchParams(location.search);
+  var only = p.get('s');
+  if (only) {
+    var slides = document.querySelectorAll('.slide');
+    slides.forEach(function(sl){
+      var n = sl.getAttribute('data-slide');
+      if (n !== only) sl.style.display = 'none';
+      else { sl.style.margin='0'; }
+    });
+  }
+} catch(e){}
+</script>
+</body>
+</html>
